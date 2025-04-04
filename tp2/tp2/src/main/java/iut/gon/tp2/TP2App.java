@@ -71,6 +71,10 @@ public class TP2App extends Application {
   /** Prépare les menus et leurs événements */
   private void prepareMenus(MenuBar menus) {
     //TODO Remplir la barre de menus
+	  Menu m1 = new Menu("_Fichier");
+	  Menu m2 = new Menu("_Aide");
+	  menus.getMenus().addAll(m1, m2);
+	  
   }
 
   /**

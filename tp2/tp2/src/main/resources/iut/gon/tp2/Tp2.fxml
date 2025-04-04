@@ -7,12 +7,6 @@
 <BorderPane prefHeight="197.0" prefWidth="322.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1">
    <top>
        <MenuBar BorderPane.alignment="CENTER" id="menus">
-       <menu>
-       <label text= "_fichier"/>
-       </menu>
-       <menu>
-       <label text = "_Aide">
-       </menu>
        </MenuBar>
    </top>
    <center>
