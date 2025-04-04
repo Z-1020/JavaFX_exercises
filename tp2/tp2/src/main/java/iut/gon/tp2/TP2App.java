@@ -74,7 +74,10 @@ public class TP2App extends Application {
 	  Menu m1 = new Menu("_Fichier");
 	  Menu m2 = new Menu("_Aide");
 	  menus.getMenus().addAll(m1, m2);
-	  
+	  MenuItem menuQuitter = new MenuItem("Quitter");
+	  MenuItem menuAPropos = new MenuItem(" A propos");
+	  m1.getItems().addAll(menuQuitter);
+	  m2.getItems().addAll(menuAPropos);
   }
 
   /**
