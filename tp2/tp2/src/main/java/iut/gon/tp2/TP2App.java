@@ -8,6 +8,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -78,6 +79,15 @@ public class TP2App extends Application {
 	  MenuItem menuAPropos = new MenuItem(" A propos");
 	  m1.getItems().addAll(menuQuitter);
 	  m2.getItems().addAll(menuAPropos);
+	  menuQuitter.setOnAction((quitter) -> {
+		  Platform.exit();
+	  });
+	  menuAPropos.setOnAction((propos)->{
+		  ButtonType fermer = new ButtonType("close");
+		  Alert boiteDeDialogue = new Alert(AlertType.NONE, "Voici une boite de dialogue", fermer.CLOSE);
+		  boiteDeDialogue.setTitle("A propos");
+		  boiteDeDialogue.show();
+	  });
   }
 
   /**
