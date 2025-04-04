@@ -58,17 +58,23 @@ public class TP2App extends Application {
   /** Ajoute tous les éléments de gauche dans la liste de droite
    Active le bouton "Retirer tout" et désactive le bouton "Ajouter tout" */
   private void onAjouteTout(ActionEvent actionEvent) {
+	  if(gauche.getItems() != null) {
+		  ajouteTout.setDisable(false);
+	  }
     droite.getItems().addAll(gauche.getItems());
     gauche.getItems().clear();
     //TODO active/désactive les boutons
-    droite.setDisable(false);
-    gauche.setDisable(false);
+    ajouteTout.setDisable(true);
+    retireTout.setDisable(false);
   }
 
   /** Ajoute tous les éléments de droite dans la liste de gauche
    Active le bouton "Ajouter tout" et désactive le bouton "Retirer tout" */
   private void onRetireTout(ActionEvent actionEvent) {
-    //TODO
+	  retireTout.setDisable(true);
+	  ajouteTout.setDisable(false);
+	  gauche.getItems().addAll(droite.getItems());
+	  droite.getItems().clear();
   }
 
   /** Prépare les menus et leurs événements */
