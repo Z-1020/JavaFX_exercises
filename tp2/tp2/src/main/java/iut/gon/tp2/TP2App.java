@@ -61,6 +61,8 @@ public class TP2App extends Application {
     droite.getItems().addAll(gauche.getItems());
     gauche.getItems().clear();
     //TODO active/désactive les boutons
+    droite.setDisable(false);
+    gauche.setDisable(false);
   }
 
   /** Ajoute tous les éléments de droite dans la liste de gauche
@@ -96,6 +98,10 @@ public class TP2App extends Application {
    */
   private void prepareListe() {
     //TODO active le bouton "Ajouter tout"
+	  String nom1 = "nom1";
+	  String nom2 = "nom2";
+	  gauche.getItems().addAll(nom1,nom2);
+	  ajouteTout.setDisable(false);
   }
 
   private void extraitIds(Scene scene) {
