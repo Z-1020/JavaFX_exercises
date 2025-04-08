@@ -61,7 +61,7 @@ public class TP2App extends Application {
   private void deplacerVersDroite(ActionEvent actionEvent) {
 	  versDroite.setOnAction((deplacerverslagauche)-> {
 		 index = gauche.getSelectionModel().getSelectedIndex();
-		 if (index != 1) {
+		 if (index != -1) {
 			 droite.getItems().add(""+gauche.getSelectionModel().getSelectedItem());
 			 gauche.getItems().remove(index);
 			 gauche.getSelectionModel().clearSelection();
@@ -72,7 +72,7 @@ public class TP2App extends Application {
   private void deplacerVersGauche(ActionEvent actionEvent) {
 	  versGauche.setOnAction((deplacerverslagauche)-> {
 		 index = droite.getSelectionModel().getSelectedIndex();
-		 if (index != 1) {
+		 if (index != -1) {
 			 gauche.getItems().add(""+droite.getSelectionModel().getSelectedItem());
 			 droite.getItems().remove(index);
 			 droite.getSelectionModel().clearSelection();
