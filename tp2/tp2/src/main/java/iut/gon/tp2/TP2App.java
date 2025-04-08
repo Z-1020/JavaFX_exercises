@@ -23,6 +23,7 @@ public class TP2App extends Application {
   private Button versDroite;
   private Button retireTout;
   private Button ajouteTout;
+  int index;
 
   @Override
   public void start(Stage stage) throws IOException {
@@ -52,7 +53,31 @@ public class TP2App extends Application {
   private void prepareBoutons() {
     ajouteTout.setOnAction(this::onAjouteTout);
     retireTout.setOnAction(this::onRetireTout);
+    versDroite.setOnAction(this::deplacerVersDroite);
+    versGauche.setOnAction(this::deplacerVersGauche);
     // TODO actions des deux boutons centraux
+  }
+  
+  private void deplacerVersDroite(ActionEvent actionEvent) {
+	  versDroite.setOnAction((deplacerverslagauche)-> {
+		 index = gauche.getSelectionModel().getSelectedIndex();
+		 if (index != 1) {
+			 droite.getItems().add(""+gauche.getSelectionModel().getSelectedItem());
+			 gauche.getItems().remove(index);
+			 gauche.getSelectionModel().clearSelection();
+		 }
+	  });
+  }
+  
+  private void deplacerVersGauche(ActionEvent actionEvent) {
+	  versGauche.setOnAction((deplacerverslagauche)-> {
+		 index = droite.getSelectionModel().getSelectedIndex();
+		 if (index != 1) {
+			 gauche.getItems().add(""+droite.getSelectionModel().getSelectedItem());
+			 droite.getItems().remove(index);
+			 droite.getSelectionModel().clearSelection();
+		 }
+	  });
   }
 
   /** Ajoute tous les éléments de gauche dans la liste de droite
