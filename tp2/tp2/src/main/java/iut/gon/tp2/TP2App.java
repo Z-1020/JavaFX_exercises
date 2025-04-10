@@ -13,6 +13,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 public class TP2App extends Application {
 
@@ -23,7 +24,9 @@ public class TP2App extends Application {
   private Button versDroite;
   private Button retireTout;
   private Button ajouteTout;
+  private ButtonType fermer;
   int index;
+  
 
   @Override
   public void start(Stage stage) throws IOException {
@@ -45,8 +48,17 @@ public class TP2App extends Application {
   /** Prépare la fenêtre pour demander confirmation avant fermeture */
   private void prepareFermeture(Stage stage) {
     stage.setOnCloseRequest(event -> {
-      //TODO confirmer ou consommer l'événement
-    });
+    	stage.getOnCloseRequest();
+    	ButtonType oui = new ButtonType("yes");
+    	ButtonType non = new ButtonType("no");
+    	Alert fermeture = new Alert(AlertType.CONFIRMATION);
+    	fermeture.setContentText("Voulez-vous vraiment quitter l'application ?");
+    	fermeture.setTitle("Fermeture de l'application");
+    	Optional<ButtonType> res =fermeture.showAndWait();
+    	if(res.get() == ButtonType.CANCEL) {
+    		event.consume();
+    	}
+    	});
   }
 
   /** Prépare les actions des boutons */
