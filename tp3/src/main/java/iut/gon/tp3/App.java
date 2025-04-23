@@ -1,4 +1,4 @@
-package iut.gon.test;
+package iut.gon.tp3;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
