@@ -23,7 +23,6 @@ public class GrilleController implements Initializable{
 	
 	@Override
 	public void initialize(URL url, ResourceBundle ressource) {
-		
 		grille.setStyle("-fx-background-color: seashell");
 		Label tabLabel[][] = new Label[3][3];
 		for(int i =0; i<3; i++) {
