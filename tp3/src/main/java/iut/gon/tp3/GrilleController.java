@@ -15,9 +15,15 @@ import javafx.scene.text.TextAlignment;
 
 public class GrilleController implements Initializable{
 	private @FXML GridPane grille;
+	public GrilleModel gm;
+	
+	public GrilleController(GrilleModel g) {
+		this.gm = g;
+	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle ressource) {
+		
 		grille.setStyle("-fx-background-color: seashell");
 		Label tabLabel[][] = new Label[3][3];
 		for(int i =0; i<3; i++) {
@@ -26,10 +32,8 @@ public class GrilleController implements Initializable{
 				l.setMaxSize(1000, 1000);
 				l.setAlignment(Pos.CENTER);
 				l.setTextAlignment(TextAlignment.CENTER);
-				l.setText(String.format("L%dC%d", j+1, i+1));
-				l.setOnMouseClicked(event -> {
-					l.setText("Bonjour");
-				});
+				l.setText(gm.getCase(j, i));
+				gm.clicLabel(l, i, j);
 				 tabLabel[i][j] = l;
 				grille.add(l, i, j);
 			}

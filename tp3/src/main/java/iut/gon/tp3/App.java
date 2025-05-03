@@ -12,12 +12,16 @@ import java.io.IOException;
  * JavaFX App
  */
 public class App extends Application {
-
+	GrilleModel gm = new GrilleModel();
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("tp3"), 640, 480);
+
+        FXMLLoader loader = new FXMLLoader(GrilleController.class.getResource(("tp3.fxml")));
+        GrilleController gc = new GrilleController(gm);
+        loader.setController(gc);
+        Scene scene = new Scene(loader.load());
         stage.setScene(scene);
         stage.show();
     }
