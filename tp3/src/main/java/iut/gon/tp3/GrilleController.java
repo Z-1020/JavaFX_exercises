@@ -3,6 +3,7 @@ package iut.gon.tp3;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.beans.property.SimpleStringProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -33,6 +34,7 @@ public class GrilleController implements Initializable{
 				l.setTextAlignment(TextAlignment.CENTER);
 				l.setText(gm.getCase(j, i));
 				gm.clicLabel(l, i, j);
+				gm.getSimpleStringProperty();
 				 tabLabel[i][j] = l;
 				grille.add(l, i, j);
 			}
