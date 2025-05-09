@@ -8,7 +8,7 @@ public class GrilleModel {
 	
 	
 	public String[][]  tab = new String[3][3];
-	public SimpleStringProperty[][] str = new SimpleStringProperty[3][3];
+	public StringProperty[][] str = new StringProperty[3][3];
 	
 	public GrilleModel() {
 		for(int i=0; i<3; i++) {
@@ -20,13 +20,13 @@ public class GrilleModel {
 	
 
 
-	public StringProperty[][] getSimpleStringProperty() {
-		return str;
+	public StringProperty getSimpleStringProperty(int lg, int col) {
+		return this.str[lg][col];
 	}
 
 
 
-	public void setSimpleStringProperty(SimpleStringProperty stringProperty, int lg, int col) {
+	public void setSimpleStringProperty(StringProperty stringProperty, int lg, int col) {
 		this.str[lg][col] =  stringProperty;
 	}
 

@@ -34,7 +34,7 @@ public class GrilleController implements Initializable{
 				l.setTextAlignment(TextAlignment.CENTER);
 				l.setText(gm.getCase(j, i));
 				gm.clicLabel(l, i, j);
-				gm.getSimpleStringProperty();
+				gm.setSimpleStringProperty(l.textProperty(), i, j);
 				 tabLabel[i][j] = l;
 				grille.add(l, i, j);
 			}
