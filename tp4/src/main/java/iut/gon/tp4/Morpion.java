@@ -17,9 +17,6 @@ public class Morpion extends Application {
     GrilleController controller = new GrilleController(score);
     fxmlLoader.setController(controller);
     Scene scene = new Scene(fxmlLoader.load(), 800, 600);
-    stage.getScene();
-    
-
     stage.setTitle("Morpion!");
     stage.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
       switch (event.getText()) {
@@ -35,7 +32,6 @@ public class Morpion extends Application {
       }
     });
     stage.setScene(scene);
-    stage.getScene();
     stage.show();
   }
 

@@ -9,6 +9,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.layout.GridPane;
@@ -53,8 +54,8 @@ public class GrilleController implements Initializable {
         label.setAlignment(Pos.CENTER);
         label.setFont(Font.font(24));
       }
-    joueur.textProperty().bind(modele.texteJoueur);
   }
+  
 
   public void joueCase(int lg, int col) {
     if (modele.estFinie()) return;
@@ -73,6 +74,15 @@ public class GrilleController implements Initializable {
   }
 
   private void onGagne(String joueur) {
+	  if (modele.estGagne(joueur)) {
+		  TextInputDialog tid = new TextInputDialog();
+		  tid.setContentText("entrez le nom du joueur: ");
+		  tid.showAndWait();
+		  table.ajouteVictoire(tid.getResult());
+	  }
+	  else if (modele.estFinie() || modele.estNulle()){
+		  table.ajouteNulle();
+	  }
     //TODO demander le nom du joueur
     //TODO modifier scores
     //TODO appeler la table des scores
@@ -85,11 +95,12 @@ public class GrilleController implements Initializable {
   @FXML
   public void onMenuTable(ActionEvent evt) throws IOException {
 	  FXMLLoader fxmlLoader = new FXMLLoader(TableController.class.getResource("table.fxml"));
-	  Parent parent =fxmlLoader.load() ;
+	  Parent parent = fxmlLoader.load() ;
 	  TableController tc = fxmlLoader.getController();
 	  tc.setScores(table);
 	 grille.getScene().setRoot(parent);
 
+	 
 	  
 	 
 	  
