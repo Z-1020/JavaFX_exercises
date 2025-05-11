@@ -16,27 +16,35 @@ import javafx.scene.text.TextAlignment;
 
 public class GrilleController implements Initializable{
 	private @FXML GridPane grille;
-	public GrilleModel gm;
+	public GrilleModel modele;
 	
-	public GrilleController(GrilleModel g) {
-		this.gm = g;
+	public GrilleController(GrilleModel grilleModel) {
+		this.modele = grilleModel;
 	}
 	
 	@Override
 	public void initialize(URL url, ResourceBundle ressource) {
-		grille.setStyle("-fx-background-color: seashell");
-		Label tabLabel[][] = new Label[3][3];
+		grille.setStyle("-fx-background-color: seashell"); //modifie la couleur de l'arrière plan de la grille
+		Label tabLabel[][] = new Label[3][3]; //créer un tableau de label
+		
 		for(int i =0; i<3; i++) {
 			for(int j=0; j<3; j++) {
-				Label l = new Label();
-				l.setMaxSize(1000, 1000);
-				l.setAlignment(Pos.CENTER);
-				l.setTextAlignment(TextAlignment.CENTER);
-				l.setText(gm.getCase(j, i));
-				gm.clicLabel(l, i, j);
-				gm.setSimpleStringProperty(l.textProperty(), i, j);
-				 tabLabel[i][j] = l;
-				grille.add(l, i, j);
+				Label label = new Label();	//créer un nouveau label
+				
+				label.setMaxSize(1000, 1000); 	//modifie la taille du label
+				label.setAlignment(Pos.CENTER); 	// modifie l'alignement du label dans la grille
+				label.setTextAlignment(TextAlignment.CENTER);	//modifie l'alignement du texte dans le label
+				
+				label.setText(modele.getCase(j, i));	//modifie le text du label avec le contenu du tableau de chaîne de caractère
+				modele.clicLabel(label, i, j); 		// fonction qui permet de changer le text au clic de la souris
+				tabLabel[i][j] = label;		 //ajoute le label  au tableau de label tabLabel à la colonne j et à la ligne i
+				modele.setSimpleStringProperty(modele.tab[i][j], i, j);		//modifie les valeurs du tableau contenant les propriétés, avec la valeur du tableau de chaine de caractère
+				grille.add( label, i, j); // ajoute les labels à la grille 
+			}
+		}
+		for(int i =0; i<3; i++) {
+			for(int j=0; j<3; j++) {
+				tabLabel[i][j].textProperty().bind(modele.tabPropriete[i][j]);	//lie la propriété contenu dans le tableau de propriété à la propriété du label
 			}
 		}
 	}
