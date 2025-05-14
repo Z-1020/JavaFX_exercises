@@ -24,12 +24,14 @@ import java.util.ResourceBundle;
 
 public class GrilleController implements Initializable {
 
+	private @FXML MenusController menusController;
   private GrilleModel modele;
   private Scores table;
 
   public GrilleController(Scores scores) {
     this.modele =  new GrilleModel();
     this.table = scores;
+    this.menusController = new MenusController();
   }
 
   private @FXML GridPane grille;
@@ -41,6 +43,7 @@ public class GrilleController implements Initializable {
 
   @Override
   public void initialize(URL location, ResourceBundle resources) {
+	menusController.setParam(modele, table, grille);
     grille.setStyle("-fx-background-color: seashell");
     for (int l=0; l<3; ++l)
       for (int c=0; c<3; ++c) {
@@ -83,32 +86,7 @@ public class GrilleController implements Initializable {
 	  else if (modele.estFinie() || modele.estNulle()){
 		  table.ajouteNulle();
 	  }
-    //TODO demander le nom du joueur
-    //TODO modifier scores
-    //TODO appeler la table des scores
+ 
   }
 
-  @FXML
-  public void onMenuNouvelle(ActionEvent evt) {
-    modele.nouvellePartie();
-  }
-  @FXML
-  public void onMenuTable(ActionEvent evt) throws IOException {
-	  FXMLLoader fxmlLoader = new FXMLLoader(TableController.class.getResource("table.fxml"));
-	  Parent parent = fxmlLoader.load() ;
-	  TableController tc = fxmlLoader.getController();
-	  tc.setScores(table);
-	 grille.getScene().setRoot(parent);
-
-	 
-	  
-	 
-	  
-    //TODO appeler la table des scores
-  }
-
-  @FXML
-  public void onMenuQuitter(ActionEvent evt) {
-    Platform.exit();
-  }
 }
