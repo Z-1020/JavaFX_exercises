@@ -34,7 +34,7 @@ public class GrilleController implements Initializable {
     this.menusController = new MenusController();
   }
 
-  private @FXML GridPane grille;
+  public @FXML GridPane grille;
   private @FXML HBox statut;
   private @FXML Label joueur;
 
