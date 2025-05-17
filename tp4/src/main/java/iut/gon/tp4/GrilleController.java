@@ -24,7 +24,7 @@ import java.util.ResourceBundle;
 
 public class GrilleController implements Initializable {
 
-	private @FXML MenusController menusController;
+private @FXML MenusController menusController;
   private GrilleModel modele;
   private Scores table;
 
@@ -82,9 +82,21 @@ public class GrilleController implements Initializable {
 		  tid.setContentText("entrez le nom du joueur: ");
 		  tid.showAndWait();
 		  table.ajouteVictoire(tid.getResult());
+		  try {
+			menusController.onMenuTable(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	  }
 	  else if (modele.estFinie() || modele.estNulle()){
 		  table.ajouteNulle();
+		  try {
+				menusController.onMenuTable(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 	  }
  
   }

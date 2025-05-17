@@ -22,7 +22,7 @@ public class MenusController {
 	    modele.nouvellePartie();
 	  }
 	  @FXML
-	  public void onMenuTable(ActionEvent evt) throws IOException {
+	  public void onMenuTable(ActionEvent evt) throws IOException  {
 		  FXMLLoader fxmlLoader = new FXMLLoader(TableController.class.getResource("table.fxml"));
 		  Parent parent = fxmlLoader.load() ;
 		  TableController tc = fxmlLoader.getController();
