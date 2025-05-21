@@ -16,6 +16,7 @@ import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.cell.ChoiceBoxTableCell;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -50,9 +51,19 @@ public class FactureController implements Initializable {
 
   public void onAjouter(ActionEvent actionEvent) {
     //TODO ajouter un produit aléatoire à la table
-	  Random qte = new Random();
-	  Ligne ligne = new Ligne(qte.nextInt(), FabriqueProduits.getProduits().get(0));
+	  Random qte = new Random(100);
+	  Ligne ligne = new Ligne(qte.nextInt(0,100), FabriqueProduits.getProduits().get(0));
 	  table.getItems().add(ligne);
+	  this.qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
+	  this.produit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne,Produit>, ObservableValue<Produit>>() {
+		
+		@Override
+		public ObservableValue<Produit> call(CellDataFeatures<Ligne, Produit> param) {
+			// TODO Auto-generated method stub
+			return param.getValue().produitProperty();
+		}
+	});
+	  
 	  
   }
 }
