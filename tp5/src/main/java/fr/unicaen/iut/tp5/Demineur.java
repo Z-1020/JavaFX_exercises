@@ -12,15 +12,17 @@ import java.io.IOException;
  * JavaFX App
  */
 public class Demineur extends Application {
-
+	
+	private ModeleDemineur modele = new ModeleDemineur(3,3,3);
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
-    	System.out.println(1);
-        scene = new Scene(loadFXML("demineur"), 640, 480);
-        System.out.println(1);
+    	
+    	FXMLLoader loader = new FXMLLoader(ControllerDemineur.class.getResource("demineur.fxml"));
+        scene = new Scene(loader.load());
         stage.setScene(scene);
+        ControllerDemineur controler = loader.getController();
         stage.show();
     }
 

@@ -12,12 +12,14 @@ import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
 
 public class ControllerDemineur implements Initializable {
-	public ModeleDemineur modele;
+	public ModeleDemineur modele = new ModeleDemineur(0,0,0);
 	
 	@FXML private GridPane gridPane;
 	@FXML private VBox vBox;
@@ -35,18 +37,37 @@ public class ControllerDemineur implements Initializable {
 	@FXML private RadioMenuItem menuDifficile;
 	
 
-	public ControllerDemineur(ModeleDemineur modeleDemineur) {
-		this.modele = modeleDemineur;
-	}
 	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		System.out.println("controller");
+		groupe.selectedToggleProperty().addListener((obs, nouvelle, ancienne) ->{
+			initGrille(groupe.getSelectedToggle().getUserData().toString());
+		});
 		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
 		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
 	
 		
+		
+	}
+	
+	public void initGrille(String userData) {
+		int[] tab = new int[3];
+		gridPane.getColumnConstraints().clear();
+		gridPane.getRowConstraints().clear();
+		 tab = modele.parseUserData(userData);
+		ModeleDemineur modele = new ModeleDemineur(tab[0], tab[1], tab[2]);
+		gridPane.setGridLinesVisible(true);
+		for(int i=0; i<tab[0]; i++) {
+			gridPane.getRowConstraints().add(new RowConstraints(32));
+		}
+		for(int j=0; j<tab[1]; j++) {
+			gridPane.getColumnConstraints().add(new ColumnConstraints(32));
+		}
+		System.out.println(gridPane.getParent());
+		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
+		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
 		
 	}
 
