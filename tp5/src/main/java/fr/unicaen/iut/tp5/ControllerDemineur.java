@@ -5,18 +5,21 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Paint;
 
 public class ControllerDemineur implements Initializable {
 	public ModeleDemineur modele = new ModeleDemineur(0,0,0);
@@ -68,7 +71,29 @@ public class ControllerDemineur implements Initializable {
 		System.out.println(gridPane.getParent());
 		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
 		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
+		System.out.println(gridPane.getRowCount());
+				for(int i=0; i<gridPane.getRowCount(); i++) {
+			for(int j=0; j<gridPane.getColumnCount(); j++) {
+				Label label = new Label();
+				label.setPrefSize(31, 31);
+			}
+		}
 		
+	}
+	
+	public void changerCouleur(int x, int y) {
+		if(modele.estMarquee(x, y)){
+			gridPane.setStyle("-fx-background-color: Lemonchiffon");
+		}
+		else if(modele.estPerdu()) {
+			gridPane.setStyle("-fx-background-color: red");
+		}
+		else if(modele.estRevelee(x, y) ) {
+			gridPane.setStyle("-fx-background-color: LIGHTGRAY");
+		}
+		else {
+			gridPane.setStyle("-fx-background-color: AQUA");
+		}
 	}
 
 }
