@@ -6,6 +6,7 @@ import fr.iutgon.tp6.modele.Produit;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.NumberExpression;
 import javafx.beans.property.ReadOnlyIntegerWrapper;
+import javafx.beans.property.SimpleFloatProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -63,7 +64,29 @@ public class FactureController implements Initializable {
 			return param.getValue().produitProperty();
 		}
 	});
-	  
-	  
+	  this.prixUnitaire.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne,Number>, ObservableValue<Number>>() {
+			
+			@Override
+			public ObservableValue<Number> call(CellDataFeatures<Ligne,Number> param) {
+				// TODO Auto-generated method stub
+				return param.getValue().produitProperty().getValue().prixProperty();
+			}
+		});
+	  this.totalHT.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne,Number>, ObservableValue<Number>>() {
+			
+			@Override
+			public ObservableValue<Number> call(CellDataFeatures<Ligne,Number> param) {
+				// TODO Auto-generated method stub
+				return param.getValue().totalHTProperty();
+			}
+		});
+	  this.totalTTC.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne,Number>, ObservableValue<Number>>() {
+			
+			@Override
+			public ObservableValue<Number> call(CellDataFeatures<Ligne,Number> param) {
+				// TODO Auto-generated method stub
+				return param.getValue().totalTTCProperty();
+			}
+		});
   }
 }
