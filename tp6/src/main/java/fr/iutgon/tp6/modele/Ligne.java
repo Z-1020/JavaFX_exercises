@@ -86,13 +86,13 @@ public class Ligne {
 
   /** Le total Hors-Taxes de la ligne */
   public NumberExpression totalHTProperty() {
-	 this.totalHT = this.qte.multiply(this.produit.getValue().prixProperty());
+	 this.totalHT = this.qte.multiply(Bindings.selectFloat(this.produitProperty(), "prix"));
     return this.totalHT;
   }
 
   /** Le total Toutes-Taxes-Comprises de la ligne */
   public NumberExpression totalTTCProperty() {
-	this.totalTTC = this.totalHT.multiply(this.produit.getValue().getTva());
+	this.totalTTC = this.totalHT.multiply(Bindings.selectFloat(this.produitProperty(), "tva"));
     return this.totalTTC;
   }
 
