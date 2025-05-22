@@ -37,6 +37,8 @@ public class FactureController implements Initializable {
   public TableColumn<Ligne, Number> totalHT;
   public TableColumn<Ligne, Number> totalTTC;
   public TextField sommeFacture;
+  public TextField quantite;
+  public Ligne ligne;
 
   /**
    Called to initialize a controller after its root element has been completely processed.
@@ -53,7 +55,7 @@ public class FactureController implements Initializable {
   public void onAjouter(ActionEvent actionEvent) {
     //TODO ajouter un produit aléatoire à la table
 	  Random qte = new Random(100);
-	  Ligne ligne = new Ligne(qte.nextInt(0,100), FabriqueProduits.getProduits().get(0));
+	  ligne = new Ligne(qte.nextInt(0,100), FabriqueProduits.getProduits().get(0));
 	  table.getItems().add(ligne);
 	  this.qte.setCellValueFactory(new PropertyValueFactory<>("qte"));
 	  this.produit.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Ligne,Produit>, ObservableValue<Produit>>() {
@@ -88,5 +90,11 @@ public class FactureController implements Initializable {
 				return param.getValue().totalTTCProperty();
 			}
 		});
+	   this.qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+  }
+  
+  public String toString() {
+	return ligne.getProduit().getNom() ;
+	  
   }
 }
