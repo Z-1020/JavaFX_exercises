@@ -108,6 +108,7 @@ public class FactureController implements Initializable {
 		}
 		   
 	   }));
+	   this.sommeFacture.textProperty().bind(ligne.totalTTCProperty().asString());
   }
   
 }
