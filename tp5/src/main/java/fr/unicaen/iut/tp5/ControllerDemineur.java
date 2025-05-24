@@ -44,7 +44,6 @@ public class ControllerDemineur implements Initializable {
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		System.out.println("controller");
 		groupe.selectedToggleProperty().addListener((obs, nouvelle, ancienne) ->{
 			initGrille(groupe.getSelectedToggle().getUserData().toString());
 		});
@@ -71,12 +70,14 @@ public class ControllerDemineur implements Initializable {
 		System.out.println(gridPane.getParent());
 		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
 		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
-		System.out.println(gridPane.getRowCount());
-				for(int i=0; i<gridPane.getRowCount(); i++) {
+		for(int i=0; i<gridPane.getRowCount(); i++) {
 			for(int j=0; j<gridPane.getColumnCount(); j++) {
 				Label label = new Label();
 				label.setPrefSize(31, 31);
+				label.setStyle("-fx-background-color: AQUA");
+				
 			}
+			
 		}
 		
 	}
