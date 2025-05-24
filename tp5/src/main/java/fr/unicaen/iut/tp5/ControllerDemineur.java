@@ -12,6 +12,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.RadioMenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.ColumnConstraints;
@@ -49,6 +50,7 @@ public class ControllerDemineur implements Initializable {
 		});
 		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
 		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
+
 	
 		
 		
@@ -67,34 +69,25 @@ public class ControllerDemineur implements Initializable {
 		for(int j=0; j<tab[1]; j++) {
 			gridPane.getColumnConstraints().add(new ColumnConstraints(32));
 		}
-		System.out.println(gridPane.getParent());
 		textFieldInconnu.textProperty().bind(modele.nbInconnuesProperty().asString());
 		textFielMarque.textProperty().bind(modele.nbMarquesProperty().asString());
+		System.out.println(gridPane.getRowCount());
+		System.out.println(gridPane.getColumnCount());
 		for(int i=0; i<gridPane.getRowCount(); i++) {
 			for(int j=0; j<gridPane.getColumnCount(); j++) {
 				Label label = new Label();
 				label.setPrefSize(31, 31);
 				label.setStyle("-fx-background-color: AQUA");
+				label.setText(modele.getText(j, i));
+				int x =i;
+				int y =j;
+				gridPane.add(label, i, j);
 				
 			}
 			
-		}
+			}
 		
 	}
 	
-	public void changerCouleur(int x, int y) {
-		if(modele.estMarquee(x, y)){
-			gridPane.setStyle("-fx-background-color: Lemonchiffon");
-		}
-		else if(modele.estPerdu()) {
-			gridPane.setStyle("-fx-background-color: red");
-		}
-		else if(modele.estRevelee(x, y) ) {
-			gridPane.setStyle("-fx-background-color: LIGHTGRAY");
-		}
-		else {
-			gridPane.setStyle("-fx-background-color: AQUA");
-		}
-	}
 
 }
