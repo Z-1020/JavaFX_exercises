@@ -23,6 +23,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
+import javafx.util.converter.CharacterStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
 import java.net.URL;
@@ -39,6 +40,7 @@ public class FactureController implements Initializable {
   public TextField sommeFacture;
   public TextField quantite;
   public Ligne ligne;
+
 
   /**
    Called to initialize a controller after its root element has been completely processed.
@@ -91,10 +93,21 @@ public class FactureController implements Initializable {
 			}
 		});
 	   this.qte.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+	   this.produit.setCellFactory((cell) -> new ChoiceBoxTableCell<>(new StringConverter<Produit>() {
+		   
+		   
+		   
+		@Override
+		public String toString(Produit object) {
+			return ligne.getProduit().getNom() ;
+		}
+
+		@Override
+		public Produit fromString(String string) {
+			return ligne.getProduit();
+		}
+		   
+	   }));
   }
   
-  public String toString() {
-	return ligne.getProduit().getNom() ;
-	  
-  }
 }
